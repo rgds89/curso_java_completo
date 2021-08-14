@@ -1,3 +1,1 @@
-# CursoJava2020
-
-author: Roger Silva
+# Curso Java Completo
