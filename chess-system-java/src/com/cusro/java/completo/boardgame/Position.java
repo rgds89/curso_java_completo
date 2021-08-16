@@ -1,27 +1,27 @@
 package com.cusro.java.completo.boardgame;
 
 public class Position {
-    private Long row;
-    private Long column;
+    private int row;
+    private int column;
 
-    public Position(Long row, Long column) {
+    public Position(int row, int column) {
         this.row = row;
         this.column = column;
     }
 
-    public Long getRow() {
+    public int getRow() {
         return row;
     }
 
-    public void setRow(Long row) {
+    public void setRow(int row) {
         this.row = row;
     }
 
-    public Long getColumn() {
+    public int getColumn() {
         return column;
     }
 
-    public void setColumn(Long column) {
+    public void setColumn(int column) {
         this.column = column;
     }
 
