@@ -1,10 +1,15 @@
 package com.cusro.java.completo.chess.pieces;
 
 import com.cusro.java.completo.boardgame.Board;
+import com.cusro.java.completo.boardgame.Position;
 import com.cusro.java.completo.chess.ChessPiece;
 import com.cusro.java.completo.chess.Color;
 
 public class King extends ChessPiece {
+
+    private boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];
+    private Position p = new Position(0, 0);
+
     public King(Board board, Color color) {
         super(board, color);
     }
@@ -14,9 +19,78 @@ public class King extends ChessPiece {
         return "K";
     }
 
+    private boolean canMove(Position position) {
+        ChessPiece p = (ChessPiece) getBoard().piece(position);
+        return p == null || p.getColor() != getColor();
+    }
+
     @Override
     public boolean[][] possibleMoves() {
-        boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];
+        possibleMovesAbove();
+        possibleMovesBelow();
+        possibleMovesLeft();
+        possibleMovesRight();
+        possibleMovesNw();
+        possibleMovesNe();
+        possibleMovesSw();
+        possibleMovesSe();
         return mat;
+    }
+
+    private void possibleMovesAbove() {
+        p.setValues(position.getRow() - 1, position.getColumn());
+        if (getBoard().positionExists(p) && canMove(p)) {
+
+            mat[p.getRow()][p.getColumn()] = true;
+        }
+    }
+
+    private void possibleMovesBelow() {
+        p.setValues(position.getRow() + 1, position.getColumn());
+        if (getBoard().positionExists(p) && canMove(p)) {
+            mat[p.getRow()][p.getColumn()] = true;
+        }
+    }
+
+    private void possibleMovesLeft() {
+        p.setValues(position.getRow(), position.getColumn() - 1);
+        if (getBoard().positionExists(p) && canMove(p)) {
+            mat[p.getRow()][p.getColumn()] = true;
+        }
+    }
+
+    private void possibleMovesRight() {
+        p.setValues(position.getRow(), position.getColumn() + 1);
+        if (getBoard().positionExists(p) && canMove(p)) {
+            mat[p.getRow()][p.getColumn()] = true;
+        }
+    }
+
+    private void possibleMovesNw() {
+        p.setValues(position.getRow() - 1, position.getColumn() - 1);
+        if (getBoard().positionExists(p) && canMove(p)) {
+            mat[p.getRow()][p.getColumn()] = true;
+        }
+    }
+
+    private void possibleMovesNe() {
+        p.setValues(position.getRow() - 1, position.getColumn() + 1);
+        if (getBoard().positionExists(p) && canMove(p)) {
+            mat[p.getRow()][p.getColumn()] = true;
+        }
+    }
+
+    private void possibleMovesSw() {
+        p.setValues(position.getRow() + 1, position.getColumn() - 1);
+        if (getBoard().positionExists(p) && canMove(p)) {
+            mat[p.getRow()][p.getColumn()] = true;
+        }
+    }
+
+    private void possibleMovesSe() {
+        p.setValues(position.getRow() + 1, position.getColumn() + 1);
+        if (getBoard().positionExists(p) && canMove(p)) {
+            mat[p.getRow()][p.getColumn()] = true;
+        }
     }
 }
