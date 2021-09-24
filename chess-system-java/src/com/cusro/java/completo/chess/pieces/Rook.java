@@ -21,14 +21,14 @@ public class Rook extends ChessPiece {
 
     @Override
     public boolean[][] possibleMoves() {
-        possibleMovesUp();
-        possibleMovesDown();
+        possibleMovesAbove();
         possibleMovesLeft();
         possibleMovesRight();
+        possibleMovesBelow();
         return mat;
     }
 
-    protected void possibleMovesUp() {
+    protected void possibleMovesAbove() {
         p.setValues(position.getRow() - 1, position.getColumn());
         while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
             mat[p.getRow()][p.getColumn()] = true;
@@ -40,7 +40,7 @@ public class Rook extends ChessPiece {
         }
     }
 
-    protected void possibleMovesDown() {
+    protected void possibleMovesBelow() {
         p.setValues(position.getRow() + 1, position.getColumn());
         while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
             mat[p.getRow()][p.getColumn()] = true;
