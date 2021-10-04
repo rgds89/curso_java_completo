@@ -4,6 +4,10 @@ import com.cusro.java.completo.chess.ChessException;
 import com.cusro.java.completo.chess.ChessMatch;
 import com.cusro.java.completo.chess.ChessPiece;
 import com.cusro.java.completo.chess.ChessPosition;
+import com.cusro.java.completo.chess.pieces.Bishop;
+import com.cusro.java.completo.chess.pieces.Knight;
+import com.cusro.java.completo.chess.pieces.Queen;
+import com.cusro.java.completo.chess.pieces.Rook;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -40,7 +44,11 @@ public class Program {
 
                 if(chessMatch.getPromoted() != null){
                     System.out.print("Enter piece for promotion (B/N/R/Q): ");
-                    String type = scanner.nextLine();
+                    String type = scanner.nextLine().toUpperCase();
+                    while(!type.equals("B") && !type.equals("N") && !type.equals("R") && !type.equals("Q")) {
+                        System.out.print("Invalid value! Enter piece for promotion (B/N/R/Q):");
+                        type = scanner.nextLine().toUpperCase();
+                    }
                     chessMatch.replacePromotedPiece(type);
                 }
             } catch (ChessException e) {
